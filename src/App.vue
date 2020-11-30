@@ -1,13 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <app-header class="position: sticky-top"></app-header>
+    <b-container>
+      <b-row class="justify-content-center">
+        <router-view />
+      </b-row>
+    </b-container>
   </div>
 </template>
 
+<script>
+import AppHeader from '@/components/AppHeader.vue';
+export default {
+  components: {
+    AppHeader,
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
