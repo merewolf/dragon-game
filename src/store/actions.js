@@ -16,8 +16,16 @@ export default {
   setMessages: async ({ commit }, payload) => {
     try {
       let result = await axios.get(`${URL}/${payload}/messages`);
-      console.log(result.data);
-      commit('SET_MESSAGES', result.data);
+      let messages = result.data;
+      messages.forEach(message => {
+      if(message.encrypted) {
+        message.adId = atob(message.adId)
+        message.message = atob(message.message)
+        message.probability = atob(message.probability)
+      }}
+      )
+
+      commit('SET_MESSAGES', messages);
     } catch (error) {
       throw new Error(error);
     }
